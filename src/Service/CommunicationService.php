@@ -70,4 +70,15 @@ class CommunicationService
 
         return json_decode($response->getContent(), true);
     }
+
+    public function getOrdersByDeliverer(HttpClientInterface $httpClient, string $deliverer)
+    {
+        $response = $httpClient->request(
+            'GET',
+            $this->urlUser . 'orders/deliverer/' . $deliverer
+        );
+
+
+        return json_decode($response->getContent(), true);
+    }
 }
