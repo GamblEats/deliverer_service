@@ -37,4 +37,18 @@ class DelivererController extends AbstractController
         $response->setData($ordersArray);
         return $response;
     }
+
+    /**
+     * @Route("/orders/{idDeliverer}", name="orders_by_deliverer", methods={"GET"})
+     * @param string $idDeliverer
+     * @return JsonResponse
+     */
+    public function getOrdersByDeliverer(string $idDeliverer): JsonResponse
+    {
+        $response = new JsonResponse();
+
+        $order = $this->communicationService->getOrdersByDeliverer($this->httpClient, $idDeliverer);
+        $response->setData($order);
+        return $response;
+    }
 }
